@@ -1,16 +1,26 @@
-URxvt.transparent:	true
-URxvt.scrollStyle:	rxvt
+#true transparency
+urxvt*depth: 32
+urxvt*background: rgba:1000/1000/1000/9000
+
+#fake transparency
+#URxvt.transparent:	true
+#URxvt.scrollStyle:	rxvt
+
+#basic settings
 URxvt.scrollBar:	false
 URxvt.foreground:	white
 URxvt.background:	black
-urxvt*matcher.pattern.1:	\\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
-urxvt*matcher.button:	1
-urxvt*shading:	50
-urxvt*perl-lib:	/usr/lib/urxvt/perl/
-urxvt*perl-ext-common:	default,matcher
-urxvt*urlLauncher:	/usr/bin/google-chrome
+
+#weblinks URL hilight
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.matcher.rend.0: Uline Bold fg5
+
 Xft.rgba:	rgb
 Xft.hinting:	true
+
+#renoise stuff this is generated automatically I guess?
 xrenoise.use_xcursors:	1
 xrenoise.display:	:0
 xrenoise.display_resource:	0x00,0x32,0x49,0x93,0xBE,0xCD,0x72,0x5F

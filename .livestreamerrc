@@ -1,0 +1,5 @@
+# Player options
+player=mpv
+
+# Authenticate with Twitch
+twitch-oauth-token=

@@ -20,9 +20,9 @@ PS1="\[${cname}\]\u\[${csgn}\]@\[${chost}\]\h:\[${cw}\]\w\[${csgn}\]\$\[${crst}\
 # ALIAKSET
 alias ls="ls --color=always"
 alias irkki="mosh anacron@do.nakkiservo.org"
-alias wlan-iftop="sudo iftop -i wlp3s0"
-alias eth0-iftop="sudo iftop -i eth0"
+alias nettidata="sudo iftop -i -P -$(ip addr | grep "state UP" |cut -d ":" -f 2)"
 alias vpn-suomi="sudo openvpn --config /etc/openvpn/ovpn_tcp/fi8.nordvpn.com.tcp.ovpn"
 alias vpn-jenkki="sudo openvpn --config /etc/openvpn/ovpn_tcp/us1183.nordvpn.com.tcp.ovpn"
-alias poppari="/home/anacron/popcorn/linux64/Popcorn-Time"
+alias poppari="/home/anacron/popcorn/Popcorn-Time"
+alias agdq="livestreamer twitch.tv/gamesdonequick best"
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}:${PWD}\007"'

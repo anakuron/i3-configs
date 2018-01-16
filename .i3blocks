@@ -37,7 +37,7 @@ markup=none
 interval=5
 signal=10
 align=left
-
+color=#ff8396
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
@@ -82,29 +82,29 @@ separator=false
 
 [iface]
 #X220
-label=eth0
-instance=eth0
+#label=eth0
+#instance=eth0
 #Getac
-#label=enp0s25
-#instance=enp0s25
+label=enp0s25
+instance=enp0s25
 color=#00FF00
 interval=10
 separator=false
 
 [iface]
 #X220
-label=wlp3s0
-instance=wlp3s0
+#label=wlp3s0
+#instance=wlp3s0
 #Getac
-#label=wlp7s0
-#instance=wlp7s0
+label=wlp7s0
+instance=wlp7s0
 color=#00FF00
 interval=10
 separator=false
 
 [wifi]
 label=
-instance=wlp3s0
+instance=wlp7s0
 interval=10
 separator=false
 
@@ -137,7 +137,7 @@ interval=10
 label=♪
 #instance=Master
 #instance=PCM
-interval=10
+interval=3
 signal=1
 
 # Battery indicator

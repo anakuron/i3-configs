@@ -76,7 +76,7 @@ interval=30
 [iface]
 label=VPN
 instance=tun0
-color=#00FF00
+color=#0000FF
 interval=10
 separator=false
 
@@ -84,6 +84,7 @@ separator=false
 #X220
 #label=eth0
 #instance=eth0
+
 #Getac
 label=enp0s25
 instance=enp0s25
@@ -95,6 +96,7 @@ separator=false
 #X220
 #label=wlp3s0
 #instance=wlp3s0
+
 #Getac
 label=wlp7s0
 instance=wlp7s0
@@ -102,15 +104,17 @@ color=#00FF00
 interval=10
 separator=false
 
-[wifi]
-label=
-instance=wlp7s0
+#getac modem
+[iface]
+label=wwp0s20u4c2i12
+instance=wwp0s20u4c2i12
+color=#00FF0
 interval=10
 separator=false
 
-[bandwidth]
+#[bandwidth]
 #instance=eth0
-interval=5
+#interval=5
 
 # CPU usage
 #

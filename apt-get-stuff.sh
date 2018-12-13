@@ -1,8 +1,9 @@
 #!/bin/bash
+echo "this script will help to quickly install all needed packages for i3 config"
 read -p "Install packages with apt-get? Y/N " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-sudo apt-get install i3blocks fonts-font-awesome blueman compton conky libxml2-utils scrot rxvt-unicode i3 feh openvpn resolvconf evtest mosh net-tools mpv xbindkeys lm-sensors libnotify-bin bucklespring
+sudo apt-get install i3blocks fonts-font-awesome blueman compton conky libxml2-utils scrot rxvt-unicode i3 feh openvpn resolvconf evtest mosh net-tools mpv xbindkeys lm-sensors libnotify-bin bucklespring avahi-daemon avahi-discover
 echo "apt-get installations done"
 fi
 read -p "Remove packages for i3 stuff? Y/N " -n 1 -r
@@ -19,4 +20,4 @@ echo "playerctrl installed"
 fi
 echo "-"
 echo "all done!"
-done
+exit 1

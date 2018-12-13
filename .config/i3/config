@@ -8,15 +8,19 @@ exec --no-startup-id mate-power-manager
 # dunno did something fancy?
 #exec --no-startup-id /usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately
 
+# sound controller, pretty useless
 exec --no-startup-id mate-volume-control-applet
+
+#automatic lockscreen from sleep, needs some setup
 exec --no-startup-id xautolock -detectsleep -time 1 -locker i3lock -i ~/Pictures/bg.png
 
 # background
 exec --no-startup-id feh --bg-scale ~/Pictures/bg.png &
 
 # keyboard sounds ;-D
-exec --no-startup-id buckle
+exec --no-startup-id buckle &
 
+# no idea what it was
 exec --no-startup-id fluxgui
 
 # real transparency
@@ -27,22 +31,26 @@ exec --no-startup-id compton
 set $mod Mod4
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume ; exec notify-send 'volume up' '+5' -t 1000
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume ; exec notify-send 'volume down' '-5' -t 1000
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle ; exec notify-send 'Mute toggle' '' -t 1000
 
 # exec touchscreen quickpanel
 bindcode 136 exec ~/git/touchscreen-quickmenu/screen.py
 #for getac setkeycodes 98 128
 
-#bindsym XF86TouchpadOn exec xterm
-#bindsym XF86TouchpadToggle exec toggletouchpad.sh # toggle touchpad
+# I3LOCK
+bindsym $mod+l exec i3lock -i ~/Pictures/bg.png
 
-#I3LOCK
-bindsym $mod+Shift+l exec i3lock -i ~/Pictures/bg.png
+# PRINTSCREEN - remember to create the folder!
+bindsym $mod+Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots/' ; exec notify-send 'Screenshot Taken!' 'Saved at ~/Pictures/screenshots/' -t 5000
+bindsym --release Print exec scrot -s '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots/' && exec notify-send 'Screenshot Taken!' 'Saved at ~/Pictures/screenshots/' -t 5000 ; exec notify-send 'Select the area' -t 500
 
-#PRINTSCREEN - remember to create the folder!
-bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/screenshots/' ; exec notify-send 'Screenshot Taken!' 'Saved at ~/Pictures/screenshots/'
+# Screen Rotations
+bindsym $mod+Shift+n exec ~/screenrotation.sh normal
+bindsym $mod+Shift+i exec ~/screenrotation.sh inverted
+bindsym $mod+Shift+l exec ~/screenrotation.sh left
+bindsym $mod+Shift+j exec ~/screenrotation.sh right
 
 #font pango:monospace 8
 font pango:FontAwesome 8
@@ -64,6 +72,9 @@ floating_modifier $mod
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec cool-retro-term --profile ana.json 
 bindsym $mod+Shift+Return exec urxvt
+
+# start pavucontrol
+bindsym $mod+p exec pavucontrol
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -139,7 +150,7 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+c reload ; exec notify-send 'I3 Configuration reloaded' 'mod+shift+r to restart' -t 5000
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -187,7 +198,19 @@ client.focused_inactive #5e2750 #5e2750 #aea79f #5e2750
 client.unfocused #5e2750 #5e2750 #aea79f #5e2750
 client.urgent #77216f #77216f #ffffff #efb73e
 
-#window-rules
-for_window [class="florence"] floating enable
+#### RULES FOR SPECIFIC APPLICATIONS ####
+
+# this will show the window property so you can bind it to floating mode
+#
+# by APPLICATION (WM_CLASS)
+# Note: class is typically useful for applying custom settings to
+#       to entire applications, including child windows. If this
+#       isn't want you want see the ROLE section, below.
+# Tip: To find out what these values might be run:
+bindsym --release $mod+x exec xprop | grep -i 'class' > ~/xprop.log && notify-send "xprop class" "`cat ~/xprop.log`"
+
+for_window [class="Florence"] floating enable
 for_window [class="screen.py"] floating enable
 for_window [window_role="pop-up"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="XCalc"] floating enable

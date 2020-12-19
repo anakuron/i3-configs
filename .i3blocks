@@ -106,8 +106,8 @@ separator=false
 
 #getac modem
 [iface]
-label=wwp0s20u4c2i12
-instance=wwp0s20u4c2i12
+label=ppp0
+instance=ppp0
 color=#00FF0
 interval=10
 separator=false
@@ -157,6 +157,12 @@ interval=30
 #
 [time]
 command=date '+%H:%M:%S'
+label=FI
+interval=5
+#
+[time]
+command=TZ='Asia/Singapore' date '+%H:%M:%S'
+label=SG
 interval=5
 
 # Key indicators

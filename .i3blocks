@@ -28,6 +28,12 @@ command=/usr/share/i3blocks/$BLOCK_NAME
 separator_block_width=10
 markup=none
 
+[externalip]
+label=public:
+command=/usr/lib/i3blocks/externalip
+interval=once
+color=#729dee
+
 # Generic media player support
 #
 # This displays "ARTIST - SONG" if a music is playing.

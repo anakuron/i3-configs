@@ -25,8 +25,20 @@ fi
 read -p "Install playerctrl for i3blocks (now playing) Y/N " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-wget https://github.com/acrisci/playerctl/releases/download/v0.5.0/playerctl-0.5.0_amd64.deb && sudo dpkg -i playerctl-0.5.0_amd64.deb
-echo "playerctrl installed"
+sudo apt-get install playerctl
+#old manual way
+#wget https://github.com/acrisci/playerctl/releases/download/v0.5.0/playerctl-0.5.0_amd64.deb && sudo dpkg -i playerctl-0.5.0_amd64.deb
+#echo "playerctrl installed"
+fi
+
+read -p "copy setting files to home directory? Y/N " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+cp bg.png ~/Pictures/bg.png
+cp .i3blocks $HOME
+sudo mkdir -p /usr/lib/i3blocks/
+sudo cp usr/lib/i3blocks/externalip /usr/lib/i3blocks/externalip
+echo "settings copied"
 fi
 
 echo "-"
